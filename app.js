@@ -65,10 +65,18 @@ while (keepAlive != false) {
     */
     if (command.toLocaleLowerCase() === 'reorder') {
       let firstUser = prompt('Please give us the first person').replace(/^\w/, c => c.toUpperCase());
-      let index = patientList.indexOf(firstUser)
-      if (index !== -1) {
+      let userOne = patientList.indexOf(firstUser);
+      if (userOne !== -1) {
         let secondUser = prompt('Please give us the second person').replace(/^\w/, c => c.toUpperCase());
-        
+        let userTwo = patientList.indexOf(secondUser);
+        if(userTwo !== -1){
+          patientList.splice(userTwo, 1, firstUser);
+          patientList.splice(userOne, 1, secondUser);
+          alert(patientList);
+        }
+        else{
+          alert('We did not find ' + secondUser + ' in the list');
+        }
       }
       else{
         alert('We did not find ' + firstUser + ' in the list');
