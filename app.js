@@ -64,10 +64,10 @@ while (keepAlive != false) {
     If the user typed in 'reorder', prompt them for a patient name, prompt them for another patient name, switch the two entered patients, and display the list.
     */
     if (command.toLocaleLowerCase() === 'reorder') {
-      let firstUser = prompt('Please give us the first person').replace(/^\w/, c => c.toUpperCase());
+      let firstUser = prompt('Please give us the first person - '  + patientList).replace(/^\w/, c => c.toUpperCase());
       let userOne = patientList.indexOf(firstUser);
       if (userOne !== -1) {
-        let secondUser = prompt('Please give us the second person').replace(/^\w/, c => c.toUpperCase());
+        let secondUser = prompt('Please give us the second person - '  + patientList).replace(/^\w/, c => c.toUpperCase());
         let userTwo = patientList.indexOf(secondUser);
         if(userTwo !== -1){
           patientList.splice(userTwo, 1, firstUser);
