@@ -12,6 +12,10 @@ let keepAlive = true;
 while (keepAlive != false) {
   const command = prompt('Choose one: update, delete, add, reorder');
   if (command.toLocaleLowerCase() == 'update' || command.toLocaleLowerCase() == 'delete' || command.toLocaleLowerCase() == 'add' || command.toLocaleLowerCase() == 'reorder') {
+
+    /*
+    If the user typed in 'add', prompt them for a patient name, add that patient to the list, and display the list.
+    */
     if (command.toLocaleLowerCase() === 'add') {
       let addedName = prompt('Please give us a new name to add to the list');
       patientList.push(addedName);
@@ -23,72 +27,58 @@ while (keepAlive != false) {
     }
 
     /*
+    If the user typed in 'update', prompt them for a patient name,  prompt them for a new name, update the name to the new name, and display the list.
+    */
     if (command.toLocaleLowerCase() === 'update') {
-      let updateName = prompt('Please give us a patient name to update' + patientList);
-      for (let i = 0; i < patientList; i++) {
-        if (updateName.toLocaleLowerCase() === patientList[i]) {
-          alert('We updated the list' + patientList);
-          keepAlive = confirm('Do you have anymore names you would like to update?');
-        }
-        else {
-          alert('We did not find ' + updateName + 'in the list');
-        }
+      let updateName = prompt('Please give us a patient name to update - ' + patientList).replace(/^\w/, c => c.toUpperCase());
+      let updateUser = patientList.indexOf(updateName);
+      if (updateUser !== -1) {
+        let newName = prompt('Please give us a new name for ' + updateName).replace(/^\w/, c => c.toUpperCase());
+        objectIndex = patientList.findIndex((obj => obj == updateName));
+        patientList[objectIndex] = newName;
+        alert(patientList);
       }
-    }
-*/
-    if (command.toLocaleLowerCase() === 'delete') {
-      let delUser = prompt('Please type a name you would like to remove' + patientList).replace(/^\w/, c => c.toUpperCase());
-      let index = patientList.indexOf(delUser)
-      if (index !== -1) {
-        patientList.splice(index, 1);
+      else {
+        alert('We did not find ' + updateName + ' in the list');
       }
-      alert(patientList);
       keepAlive = confirm('Taking you back to the main menu.');
     }
 
+    /*
+    If the user typed in 'delete', prompt them for a patient name, delete that patient, and display the list.
+    */
+    if (command.toLocaleLowerCase() === 'delete') {
+      let delUser = prompt('Please type a name you would like to remove - ' + patientList).replace(/^\w/, c => c.toUpperCase());
+      let index = patientList.indexOf(delUser)
+      if (index !== -1) {
+        patientList.splice(index, 1);
+        alert(patientList);
+      }
+      else {
+        alert('We did not find ' + delUser + ' in the list');
+      }
+      keepAlive = confirm('Taking you back to the main menu.');
+    }
+
+    /*
+    If the user typed in 'reorder', prompt them for a patient name, prompt them for another patient name, switch the two entered patients, and display the list.
+    */
     if (command.toLocaleLowerCase() === 'reorder') {
       let firstUser = prompt('Please give us the first person').replace(/^\w/, c => c.toUpperCase());
-      let secondUser = prompt('Please give us the second person').replace(/^\w/, c => c.toUpperCase());
+      let index = patientList.indexOf(firstUser)
+      if (index !== -1) {
+        let secondUser = prompt('Please give us the second person').replace(/^\w/, c => c.toUpperCase());
+        
+      }
+      else{
+        alert('We did not find ' + firstUser + ' in the list');
+      }
+      keepAlive = confirm('Taking you back to the main menu.');
     }
+
   }
+  //If their option was not recognized send them back to the main menu
   else {
     confirm('We did not recognize your option please try again');
   }
 }
-
-/*
-if (keepAlive === 1) {
-  prompt(command);
-  // *** Here we add a name to array patientList
-  if (command.toLocaleLowerCase() == 'update' || command.toLocaleLowerCase() == 'delete' || command.toLocaleLowerCase() == 'add' || command.toLocaleLowerCase() == 'reorder') {
-    if (command.toLocaleLowerCase() === 'add') {
-      addName();
-    }
-  }
-}
-*/
-
-
-/*
-// *** Here we update a name in array patientList
-if (command.toLocaleLowerCase() === 'update') {
-  let updateName = prompt('Please give us a patient name to update' + patientList);
-  for (let i = 0; i < patientList; i++) {
-    if (updateName.toLocaleLowerCase() === patientList[i]) {
-      alert('We updated the list');
-    }
-    else {
-      alert('We did not find ' + updateName + 'in the list');
-    }
-  }
-}
-
-
-if (command.toLocaleLowerCase() === 'delete') {
-
-}
-if (command.toLocaleLowerCase() === 'reorder') {
-
-}
-}
-*/
