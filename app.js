@@ -9,7 +9,7 @@ const patientList = [
 
 let keepAlive = true;
 
-while (keepAlive != false) {
+while (keepAlive !== false) {
   const command = prompt('Choose one: update, delete, add, reorder');
   if (command.toLocaleLowerCase() == 'update' || command.toLocaleLowerCase() == 'delete' || command.toLocaleLowerCase() == 'add' || command.toLocaleLowerCase() == 'reorder') {
 
