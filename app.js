@@ -11,7 +11,7 @@ let keepAlive = true;
 
 while (keepAlive !== false) {
   const command = prompt('Choose one: update, delete, add, reorder');
-  if (command.toLocaleLowerCase() == 'update' || command.toLocaleLowerCase() == 'delete' || command.toLocaleLowerCase() == 'add' || command.toLocaleLowerCase() == 'reorder') {
+  if (command.toLocaleLowerCase() === 'update' || command.toLocaleLowerCase() === 'delete' || command.toLocaleLowerCase() === 'add' || command.toLocaleLowerCase() === 'reorder') {
 
     /*
     If the user typed in 'add', prompt them for a patient name, add that patient to the list, and display the list.
